@@ -37,7 +37,7 @@ Create a user or group in your integrated kubernetes identity management system.
 - Select User or Group
 - Enter the user or group id from the setup step above
 
-**Rule In Action**
+**Policy In Action**
 
 - You should now be able to see that a rolebinding was created in each of the namespaces in your workspace eg. "App1", "App2"
 
@@ -79,7 +79,7 @@ You will need access to an image registry, and possibly need to create an image 
 - Click **Create Policy**
 
 
-**Rule In Action**
+**Policy In Action**
 - Attempt to run a pod with an image from (default) dockerhub
 
 ```
@@ -88,6 +88,31 @@ kubectl run --restart=Never -n app1 nginx --image=nginx
 Error from server ([denied by tmc.wsp.app1.harbor-registry-policy] container <nginx> has an invalid image reference <nginx>. allowed image patterns are: {hostname: [harbor.tanzu.be], image name: []}): admission webhook "validation.gatekeeper.sh" denied the request: [denied by tmc.wsp.app1.harbor-registry-policy] container <nginx> has an invalid image reference <nginx>. allowed image patterns are: {hostname: [harbor.tanzu.be], image name: []}
 ```
 
+
+
+Network Policy (applies to workspace/namespace)
+---
+
+**Setup**
+In this example we will create network polices so that all ingress is denied to pods in our namespaces and then allow ingress only from one of our namespaces ie. pods in app1 can talk to pods in app2, and app2 to app1.
+
+**Apply Policy**
+- Select Policies -> Assignments
+- Select **Network** and then Workspaces
+- Select your workspace eg. "Apps"
+- Select **Create Network Policy**
+- Select **deny-all** from Network Policy.
+- Enter policy name eg deny-all-ingress
+- Select Create Policy
+- Select **Create Network Policy** to create another network policy
+- Select ***Custom-Ingress*** from Network Policy
+- Under **Rule** select **Selector**
+- Under Namespace Selectors enter a label (the same as used in preparation to label the namespaces) 
+- eg. "type" "app"
+- IMPORTANT : Select "Add Namespace Selector" to save it
+- Select **Save** to save the policy
+
+**Policy In Action**
 
 
 
