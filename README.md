@@ -158,7 +158,32 @@ Hello World!
 ```
 
 
+Quota (applies to cluster/group)
+---
 
+**Setup**
+A quota policy applied to a cluster (and optionally a subset of namespaces) will require that pods specify resource requests and limits, and that those requests and limits are below a specified threshold. 
+**Apply Policy**
+- Select Policies -> Assignments
+- Select **Quota** and then **Clusters**
+- Select your cluster or cluster group from the list
+- Select **Create Quota Policy**
+
+- From the list of Quota Policies select **Small**
+- Specify a policy name eg. small-quota-policy
+- Under "Include only specific namespaces"
+- Enter a label and value to select just our app1 and app2 namespaces ie. "type" = "app" (specified when we created the namespaces)
+- This will limit the impact to just those namespaces
+
+
+**Policy In Action**
+- Verify that the quotas were created in just our namespaces
+```
+kubectl get quota -A
+NAMESPACE   NAME                        AGE   REQUEST                                          LIMIT
+app1        tmc.cp.small-quota-policy   13s   requests.cpu: 0/500m, requests.memory: 0/512Mi   limits.cpu: 0/1, limits.memory: 0/2Gi
+app2        tmc.cp.small-quota-policy   13s   requests.cpu: 0/500m, requests.memory: 0/512Mi   limits.cpu: 0/1, limits.memory: 0/2Gi
+```
 
 
 
