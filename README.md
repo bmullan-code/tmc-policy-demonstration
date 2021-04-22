@@ -60,6 +60,27 @@ subjects:
 ```
 
 
+Image Registry (applies to workspace/namespace)
+---
+
+**Setup**
+You will need access to an image registry, and possibly need to create an image pull secret which can be added to your default service account or configured in the pod image spec. See [here](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account) for more information
+
+**Apply Policy**
+- Select Policies -> Assignments
+- Select **Image Registry** and then Workspaces
+- Select your workspace eg. "Apps"
+- Select **Create Image Registry Policy**
+
+- From the Image Registry template dropdown select **Custom**
+- Add a policy name eg. **harbor-registry-policy**
+- Under **Hostname** enter the hostname of your registry eg. **harbor.tanzu.be**
+- IMPORTANT - Click "Add Another Rule" to add it.
+- Click **Create Policy**
+
+
+**Rule In Action**
+
 
 
 
