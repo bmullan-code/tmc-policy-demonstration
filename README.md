@@ -80,6 +80,15 @@ You will need access to an image registry, and possibly need to create an image 
 
 
 **Rule In Action**
+- Attempt to run a pod with an image from (default) dockerhub
+
+```
+kubectl run --restart=Never -n app1 nginx --image=nginx
+
+Error from server ([denied by tmc.wsp.app1.harbor-registry-policy] container <nginx> has an invalid image reference <nginx>. allowed image patterns are: {hostname: [harbor.tanzu.be], image name: []}): admission webhook "validation.gatekeeper.sh" denied the request: [denied by tmc.wsp.app1.harbor-registry-policy] container <nginx> has an invalid image reference <nginx>. allowed image patterns are: {hostname: [harbor.tanzu.be], image name: []}
+```
+
+
 
 
 
