@@ -113,6 +113,38 @@ In this example we will create network polices so that all ingress is denied to 
 - Select **Save** to save the policy
 
 **Policy In Action**
+- deploy a set of test pods and services defined in pods.yaml.
+```
+kubectl create -f yaml/pods.yaml
+```
+- This will deploy pods node-app and net-tools into namespaces default, app1 and app2 (you may have to change the namespaces to match what you created in preparation).
+- Test connection from default namespace (success)
+```
+kubectl exec -it net-tools -- /bin/bash
+
+bash-5.1# nslookup node-app.default
+Server:		198.51.100.10
+Address:	198.51.100.10#53
+Name:	node-app.default.svc.cluster.local
+Address: 198.51.100.90
+
+bash-5.1# curl node-app.default:8080
+Hello World!
+```
+- Attempt to connect to node-app in app1 (failure)
+```
+bash-5.1# nslookup node-app1.app1
+Server:		198.51.100.10
+Address:	198.51.100.10#53
+
+Name:	node-app1.app1.svc.cluster.local
+Address: 198.51.100.93
+
+bash-5.1# curl node-app1.app1:8080
+curl: (28) Failed to connect to node-app1.app1 port 8080: Operation timed out
+```
+
+
 
 
 
