@@ -143,7 +143,19 @@ Address: 198.51.100.93
 bash-5.1# curl node-app1.app1:8080
 curl: (28) Failed to connect to node-app1.app1 port 8080: Operation timed out
 ```
+- Attempt to connect from namespace app1 to app2 (success)
+```
+$ kubectl exec -it net-tools -n app1 -- /bin/bash
+bash-5.1# nslookup node-app2.app2
+Server:		198.51.100.10
+Address:	198.51.100.10#53
 
+Name:	node-app2.app2.svc.cluster.local
+Address: 198.51.100.94
+
+bash-5.1# curl node-app2.app2:8080
+Hello World!
+```
 
 
 
