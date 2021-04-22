@@ -184,6 +184,26 @@ NAMESPACE   NAME                        AGE   REQUEST                           
 app1        tmc.cp.small-quota-policy   13s   requests.cpu: 0/500m, requests.memory: 0/512Mi   limits.cpu: 0/1, limits.memory: 0/2Gi
 app2        tmc.cp.small-quota-policy   13s   requests.cpu: 0/500m, requests.memory: 0/512Mi   limits.cpu: 0/1, limits.memory: 0/2Gi
 ```
+- Verify the that request and limit values are required to deploy a pod (failure)
+```
+kubectl create -f yaml/quota-pod.yaml
+Error from server (Forbidden): error when creating "yaml/quota-pod.yaml": pods "quota-pod" is forbidden: failed quota: tmc.cp.small-quota-policy: must specify limits.cpu,limits.memory,requests.cpu,requests.memory
+```
+- Uncomment the request and limit values, and verify quota is applied if the request is too big (failure)
+```
+kubectl create -f yaml/quota-pod.yaml
+Error from server (Forbidden): error when creating "yaml/quota-pod.yaml": pods "quota-pod" is forbidden: exceeded quota: tmc.cp.small-quota-policy, requested: requests.memory=1Gi, used: requests.memory=0, limited: requests.memory=512Mi
+```
+- Finally, change the memory request to 512Mi and try the create again (success)
+```
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+
+k create -f yaml/quota-pod.yaml
+pod/quota-pod created
+```
+
 
 
 
