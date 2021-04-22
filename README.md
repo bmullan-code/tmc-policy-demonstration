@@ -40,9 +40,9 @@ Create a user or group in your integrated kubernetes identity management system.
 You should now be able to see that a rolebinding was created in each of the namespaces in your workspace eg. "App1", "App2"
 
 ```
-k get rolebinding -n app1
-NAME                                                                                                  ROLE               AGE
-rid-ws-a0f60cc5-58dc-448a-8f17-a30fc58f7bb9-bmullan-apps-rbac.authorization.k8s.io-ClusterRole-edit   ClusterRole/edit   111m
+kubectl get rolebinding -n app1
+NAME.                                                                    ROLE               AGE
+rid-ws-a0f6...-bmullan-apps-rbac.authorization.k8s.io-ClusterRole-edit   ClusterRole/edit   111m
 ```
 
 
