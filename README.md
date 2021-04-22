@@ -38,12 +38,25 @@ Create a user or group in your integrated kubernetes identity management system.
 - Enter the user or group id from the setup step above
 
 **Rule In Action**
-You should now be able to see that a rolebinding was created in each of the namespaces in your workspace eg. "App1", "App2"
+
+- You should now be able to see that a rolebinding was created in each of the namespaces in your workspace eg. "App1", "App2"
 
 ```
 kubectl get rolebinding -n app1
 NAME.                                                                    ROLE               AGE
 rid-ws-a0f6...-bmullan-apps-rbac.authorization.k8s.io-ClusterRole-edit   ClusterRole/edit   111m
+```
+
+- In this case the user group 'dev-users' was mapped to the cluster role 'edit'
+```
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: edit
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: dev-users
 ```
 
 
