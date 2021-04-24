@@ -162,7 +162,7 @@ Security (applies to cluster/group)
 ---
 
 **Setup**
-A security policy will apply pod security constraints to pods created in the selected scopes. In this demonstration we are going to apply a constraint that a pod must run as user 1000 in our namespaces.
+A security policy will apply pod security constraints to pods created in the selected scopes. In this demonstration we are going to apply a constraint that prevents a pod running with escalated priviliges.
 
 **Apply Policy**
 - Select Policies -> Assignments
