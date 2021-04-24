@@ -172,13 +172,18 @@ A security policy will apply pod security constraints to pods created in the sel
 
 - 2 templates are provided **Strict** and **Baseline**, however we will use Custom
 - Specify a policy name eg. run-as-security-policy
-- Under the **RunAsUser** dropdown select **MustRunAs** and then enter **1000** in User id field.
-- Click **Allow Privilidged Escalation**
+- Under the **RunAsUser** dropdown select **MustRunAsNonRoot** 
 - Scroll down and under namespace selector enter "type" and "app" as the namespace selector fields.
 - IMPORTANT : Click **Add Label Selector** to save the previous step.
 - Click Save Policy
 
 **Policy In Action**
+- Attempt to create a pod requiring privilidge escalation.
+```
+kubectl create -f yaml/security-user-pod.yaml
+
+Error from server ([denied by tmc.cp.security-run-as-nonroot-policy] Privilege escalation container is not allowed: node-app): error when creating "yaml/security-user-pod.yaml": admission webhook "validation.gatekeeper.sh" denied the request: [denied by tmc.cp.security-run-as-nonroot-policy] Privilege escalation container is not allowed: node-app
+```
 
 
 Quota (applies to cluster/group)
