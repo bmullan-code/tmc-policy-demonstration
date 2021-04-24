@@ -240,7 +240,30 @@ pod/quota-pod created
 Custom Policy
 ---
 
+**Setup**
+To demonstrate a custom policy we are going to deploy the custom **deploymentreplicaminimum** policy. You can exampine its definition in the Policy Templates section. This policy requires a minimum number of replicas, useful for high availability of a deployment
 
+**Apply Policy**
+- Select Policies -> Assignments
+- Select **Custom** and then **Clusters**
+- Select your cluster or cluster group from the list
+- Select **Create Custom Policy**
+
+- From the Custom Policy drop down select **deploymentreplicaminimum**
+- Enter a policy name eg. deployment-minimum-replicas
+- Under **Target Resource** enter **Deployment** for kinds and (IMPORTANT) **apps** for API Group
+- IMPORTANT : Select **Add Resource** to save the kind and api group entry from previous step.
+- Under parameters **Replicas** enter **3**
+- Select **Save**
+
+
+
+**Policy In Action**
+
+```
+kubectl create -f yaml/deployment.yaml
+Error from server ([denied by tmc.cp.minimum-replicas-policy] To meet resiliency standards, sample-app-deployment must run at least 3 instance): error when creating "yaml/deployment.yaml": admission webhook "validation.gatekeeper.sh" denied the request: [denied by tmc.cp.minimum-replicas-policy] To meet resiliency standards, sample-app-deployment must run at least 3 instance
+```
 
 
 
