@@ -4,7 +4,7 @@ Demonstrates various tmc policies
 
 | Policy Types   | Applies To            |
 |----------------|-----------------------|
-| Access         | Workspace / Namespace |
+| [Access](#access-policy)         | Workspace / Namespace |
 | Image registry | Workspace / Namespace |
 | Network.       | Workspace / Namespace |
 | Security.      | Cluster / Group.      |
@@ -21,8 +21,9 @@ Demonstrates various tmc policies
 
 ### Demonstrate Policies
 
-Access Policy (applies to workspace/namespace)
+Access Policy
 ---
+(applies to workspace/namespace)
 
 **Setup**
 Create a user or group in your integrated kubernetes identity management system. For example for vSphere Tanzu, in vCenter select Administration, Users & Groups and create a user or group. 
