@@ -260,6 +260,7 @@ To demonstrate a custom policy we are going to deploy the custom **deploymentrep
 
 **Policy In Action**
 
+- Atttempt to deploy the provided yaml/deployment.yaml, which has a replica value of 2. You should see the following error
 ```
 kubectl create -f yaml/deployment.yaml
 Error from server ([denied by tmc.cp.minimum-replicas-policy] To meet resiliency standards, sample-app-deployment must run at least 3 instance): error when creating "yaml/deployment.yaml": admission webhook "validation.gatekeeper.sh" denied the request: [denied by tmc.cp.minimum-replicas-policy] To meet resiliency standards, sample-app-deployment must run at least 3 instance
