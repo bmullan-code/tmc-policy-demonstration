@@ -175,6 +175,7 @@ A security policy will apply pod security constraints to pods created in the sel
 - Under the **RunAsUser** dropdown select **MustRunAs** and then enter **1000** in User id field.
 - Click **Allow Privilidged Escalation**
 - Scroll down and under namespace selector enter "type" and "app" as the namespace selector fields.
+- IMPORTANT : Click **Add Label Selector** to save the previous step.
 - Click Save Policy
 
 **Policy In Action**
