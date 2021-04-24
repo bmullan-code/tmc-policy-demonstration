@@ -5,11 +5,11 @@ Demonstrates various tmc policies
 | Policy Types   | Applies To            |
 |----------------|-----------------------|
 | [Access](#access-policy)         | Workspace / Namespace |
-| Image registry | Workspace / Namespace |
-| Network.       | Workspace / Namespace |
-| Security.      | Cluster / Group.      |
-| Quota.         | Cluster / Group.      |
-| Custom.        | Cluster / Group.      |
+| [Image registry](#image-registry) | Workspace / Namespace |
+| [Network](#network-policy)       | Workspace / Namespace |
+| [Security](#security-policy)      | Cluster / Group.      |
+| [Quota](#quota-policy)         | Cluster / Group.      |
+| [Custom](#custom-policy)        | Cluster / Group.      |
 
 ### General Setup
 
@@ -61,9 +61,10 @@ subjects:
 ```
 
 
-Image Registry (applies to workspace/namespace)
+Image Registry
 ---
-
+(applies to workspace/namespace)
+ 
 **Setup**
 You will need access to an image registry, and possibly need to create an image pull secret which can be added to your default service account or configured in the pod image spec. See [here](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account) for more information
 
@@ -91,9 +92,9 @@ Error from server ([denied by tmc.wsp.app1.harbor-registry-policy] container <ng
 
 
 
-Network Policy (applies to workspace/namespace)
+Network Policy
 ---
-
+(applies to workspace/namespace)
 **Setup**
 In this example we will create network polices so that all ingress is denied to pods in our namespaces and then allow ingress only from one of our namespaces ie. pods in app1 can talk to pods in app2, and app2 to app1.
 
@@ -159,9 +160,9 @@ Hello World!
 ```
 
 
-Security (applies to cluster/group)
+Security Policy
 ---
-
+(applies to cluster/group)
 **Setup**
 A security policy will apply pod security constraints to pods created in the selected scopes. In this demonstration we are going to apply a constraint that prevents a pod running with escalated priviliges.
 
@@ -187,9 +188,9 @@ Error from server ([denied by tmc.cp.security-run-as-nonroot-policy] Privilege e
 ```
 
 
-Quota (applies to cluster/group)
+Quota Policy
 ---
-
+(applies to cluster/group)
 **Setup**
 A quota policy applied to a cluster (and optionally a subset of namespaces) will require that pods specify resource requests and limits, and that those requests and limits are below a specified threshold. 
 **Apply Policy**
@@ -234,6 +235,10 @@ exceeded quota: tmc.cp.small-quota-policy, requested: requests.memory=1Gi, used:
 k create -f yaml/quota-pod.yaml
 pod/quota-pod created
 ```
+
+
+Custom Policy
+---
 
 
 
