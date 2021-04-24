@@ -158,6 +158,28 @@ Hello World!
 ```
 
 
+Security (applies to cluster/group)
+---
+
+**Setup**
+A security policy will apply pod security constraints to pods created in the selected scopes. In this demonstration we are going to apply a constraint that a pod must run as user 1000 in our namespaces.
+
+**Apply Policy**
+- Select Policies -> Assignments
+- Select **Security** and then **Clusters**
+- Select your cluster or cluster group from the list
+- Select **Create Security Policy**
+
+- 2 templates are provided **Strict** and **Baseline**, however we will use Custom
+- Specify a policy name eg. run-as-security-policy
+- Under the **RunAsUser** dropdown select **MustRunAs** and then enter **1000** in User id field.
+- Click **Allow Privilidged Escalation**
+- Scroll down and under namespace selector enter "type" and "app" as the namespace selector fields.
+- Click Save Policy
+
+**Policy In Action**
+
+
 Quota (applies to cluster/group)
 ---
 
