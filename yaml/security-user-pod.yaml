@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: security-user-pod
+  namespace: app1
+  labels:
+    type: app
+spec:
+  containers:
+    - name: node-app
+      # image: index.docker.io/starkandwayne/sample-app-nodejs:0.0.1
+      image: busybox
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "250m"
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+
+  # securityContext:
+  #     runAsUser: 1000
+  #     runAsGroup: 3000
+  #     fsGroup: 2000
