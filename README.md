@@ -191,9 +191,9 @@ Error from server ([denied by tmc.cp.security-run-as-nonroot-policy] Privilege e
 - Another option with the security policy is to not enforce the policy but get an insights report of existing resources that violate the policy. 
 - You can enable this by creating a security policy, for example using the 'strict' template.
 - Then select the **Disable Policy Enforcement** button.
-[disable-policy-enforcement](https://github.com/bmullan-pivotal/tmc-policy-demonstration/blob/main/screenshots/disable-policy-enforcement.png?raw=true)
+![disable-policy-enforcement](https://github.com/bmullan-pivotal/tmc-policy-demonstration/blob/main/screenshots/disable-policy-enforcement.png?raw=true)
 - To view violations select the Policy -> Insights link
-[insights](https://github.com/bmullan-pivotal/tmc-policy-demonstration/blob/main/screenshots/insights.png?raw=true)
+![insights](https://github.com/bmullan-pivotal/tmc-policy-demonstration/blob/main/screenshots/insights.png?raw=true)
 
 
 Quota Policy
